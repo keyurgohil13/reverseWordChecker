@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reverse Word Checker</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h1>Reverse Word Checker</h1>
+    <p id="randomString">
+      Red and White Multimedia Education is one of the best Web Design Training
+      Institute in Surat having advance Web design course module. Students who
+      are taking web design classes from us are extremely satisfied. Here is few
+      reason why students prefer us. All types of IT & Multimedia
+      technology-oriented knowledge-providing organizations means Red & White,
+      where all the syllabus are developed on a research basis. some of the
+      benefits to study in Red & White.
+    </p>
+    <textarea
+      type="text"
+      id="userInput"
+      placeholder="Type reversed words here"
+      cols="100"
+    ></textarea>
+    <button onclick="checkReversedWords()">Submit</button>
+    <p id="match"></p>
+    <p id="notMatch"></p>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      // function generateRandomString() {
+      //   const words = [
+      //     "apple",
+      //     "banana",
+      //     "cherry",
+      //     "date",
+      //     "fig",
+      //     "grape",
+      //     "kiwi",
+      //   ];
+      //   let randomWords = [];
+      //   for (let i = 0; i < 5; i++) {
+      //     let randomIndex = Math.floor(Math.random() * words.length);
+      //     randomWords.push(words[randomIndex]);
+      //   }
+      //   return randomWords.join(" ");
+      // }
+
+      function checkReversedWords() {
+        let originalString = document.getElementById("randomString").innerText;
+        let userInput = document.getElementById("userInput").value;
+
+        let originalWords = originalString.split(/\s+/);
+        let userWords = userInput.split(/\s+/);
+
+        let matchCount = 0;
+        let notMacthCount = 0;
+
+        // Create a set of reversed original words
+        // let reversedWordsSet = new Set(
+        //   originalWords.map((word) => word.split("").reverse().join(""))
+        // );
+
+        let reversedWordsSet = originalWords.map((word) =>
+          word.split("").reverse().join("")
+        );
+
+        console.log(reversedWordsSet);
+
+        // Check each user input word to see if it matches any reversed original word
+        for (let word of userWords) {
+          if (reversedWordsSet.includes(word)) {
+            matchCount++;
+          } else {
+            notMacthCount++;
+          }
+        }
+
+        document.getElementById("match").innerText =
+          "Number of correct reversed words: " + matchCount;
+
+        document.getElementById("notMatch").innerText =
+          "Number of correct reversed words: " + matchCount;
+      }
+
+      // Generate and display the random string when the page loads
+      // document.addEventListener("DOMContentLoaded", function () {
+      //   let randomString = generateRandomString();
+      //   document.getElementById("randomString").innerText = randomString;
+      // });
+    </script>
+  </body>
+</html>
